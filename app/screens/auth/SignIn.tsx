@@ -24,11 +24,6 @@ const SignIn = ({navigation}:ScreensProps) => {
       }}>
           MEMBER LOGIN
         </Heading>
-        {/* <Heading mt="1" _dark={{
-        color: "warmGray.200"
-      }} color="coolGray.600" fontWeight="medium" size="xs">
-          Sign in to continue!
-        </Heading> */}
 
         <VStack space={3} mt="5">
           <FormControl>
@@ -41,12 +36,12 @@ const SignIn = ({navigation}:ScreensProps) => {
             <Link _text={{
             fontSize: "xs",
             fontWeight: "500",
-            color: "indigo.500"
+            color: "primary.500"
           }} alignSelf="flex-end" mt="2">
               Forget your password?
             </Link>
           </FormControl>
-          <Button h={12} mt="2" colorScheme="indigo">
+          <Button onPress={()=>navigation.replace("Root")} h={12} mt="2" colorScheme="primary">
             LOGIN TO ACCOUNT
           </Button>
           <HStack mt="6" justifyContent="center">
@@ -56,7 +51,7 @@ const SignIn = ({navigation}:ScreensProps) => {
               I'm a new user.{" "}
             </Text>
             <Link onPress={()=>navigation.replace("SignUp")} _text={{
-            color: "indigo.500",
+            color: "primary.500",
             fontWeight: "medium",
             fontSize: "sm"
           }} >

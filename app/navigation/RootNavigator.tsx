@@ -10,16 +10,17 @@ const RootNavigator = () => {
 
     const Stack = createNativeStackNavigator();
   return (
-    <Stack.Navigator  initialRouteName="Root"
+    <Stack.Navigator  initialRouteName="SignIn"
     screenOptions={{
       headerShown: false,
       contentStyle: {
         backgroundColor: "white",
       },
     }}>
-    <Stack.Screen name="Root" component={DrawerNavigation} />
+   
     <Stack.Screen name="SignIn" component={SignIn} />
     <Stack.Screen name="SignUp" component={SignUp} />
+     <Stack.Screen name="Root" component={DrawerNavigation} />
     {/* <Stack.Screen name="Home" component={Home} /> */}
   
   </Stack.Navigator>

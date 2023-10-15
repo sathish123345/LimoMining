@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Box, Button, Center, Divider, FormControl, HStack, Heading, Input, Link, Text, VStack} from "native-base"
+import {Box, Button, Center, Divider, FormControl, HStack, Heading, Input, Link, Radio, Stack, Text, VStack} from "native-base"
 import { Screens } from '../../components/Screens'
 
 interface SignUpProps {
@@ -9,6 +9,7 @@ interface SignUpProps {
 const SignUp = ({navigation}:SignUpProps) => {
     const [activeTab, setActiveTab] = useState(1)
     const [formHeight, setFormHeight] = useState(0)
+    const [position, setPosition] = useState('a')
   return (
     <Screens>
 
@@ -21,8 +22,8 @@ const SignUp = ({navigation}:SignUpProps) => {
         REGISTRATION
       </Heading>
       <HStack my="4">
-        <Text underline={activeTab === 1}  mr="5" color={activeTab === 1 ? "primary.600" : "coolGray.600"} fontWeight={"normal"} fontSize="lg">Step 1</Text> 
-        <Text underline={activeTab !== 1}  mr="5" color={activeTab !== 1 ? "primary.600" : "coolGray.600"}  fontWeight={"normal"} fontSize="lg">STEP 2</Text> 
+        <Text onPress={()=>setActiveTab(1)} underline={activeTab === 1}  mr="5" color={activeTab === 1 ? "primary.600" : "coolGray.600"} fontWeight={"normal"} fontSize="lg">Step 1</Text> 
+        <Text onPress={()=>setActiveTab(2)} underline={activeTab !== 1}  mr="5" color={activeTab !== 1 ? "primary.600" : "coolGray.600"}  fontWeight={"normal"} fontSize="lg">STEP 2</Text> 
     
         </HStack>
    {activeTab === 1 ?   <VStack space={3} >
@@ -55,7 +56,7 @@ const SignUp = ({navigation}:SignUpProps) => {
           <Input h={12} type="password" />
         </FormControl>
         </VStack>
-        <Button onPress={()=>setActiveTab(2)} h={12} mt="2" colorScheme="indigo">
+        <Button onPress={()=>setActiveTab(2)} h={12} mt="2" colorScheme="primary">
           NEXT
         </Button>
       </VStack> :
@@ -73,13 +74,39 @@ const SignUp = ({navigation}:SignUpProps) => {
             <Input h={12} />
           </FormControl>
           <FormControl>
-            <FormControl.Label>Referral User Name*</FormControl.Label>
+            <FormControl.Label>Referral User Name</FormControl.Label>
             <Input h={12} />
           </FormControl>
+          <Radio.Group
+      name="TeamPosition"
+      value={position}
+      onChange={(nextValue) => {
+        setPosition(nextValue);
+      }}
+    >
+      <HStack py="4" space={3}>  
+          <Radio value="a" my="1">
+        Team A
+      </Radio>
+      <Radio value="b" my="1">
+        Team B
+      </Radio>
+      </HStack>
+  
+    </Radio.Group>
           </VStack>
-        <Button onPress={()=>navigation.replace("Home")} h={12} mt="2" colorScheme="indigo">
+          <HStack w="100%">
+            <Stack  mx="2" w="30%">
+        <Button variant={"ghost"} borderWidth={1} borderColor={"primary.600"}  onPress={()=>setActiveTab(1)} h={12} mt="2" colorScheme="primary">
+          Back
+        </Button>
+        </Stack>
+        <Stack w="70%">
+        <Button mx="2" onPress={()=>navigation.replace("Root")} h={12} mt="2" colorScheme="primary">
           REGISTER AN ACCOUNT
         </Button>
+        </Stack>
+        </HStack>
       </VStack>}
       <HStack mt="6" justifyContent="center">
           <Text fontSize="sm" color="coolGray.600" _dark={{
@@ -88,7 +115,7 @@ const SignUp = ({navigation}:SignUpProps) => {
             Already have an account?.{" "}
           </Text>
           <Link onPress={()=>navigation.navigate("SignIn")} _text={{
-          color: "indigo.500",
+          color: "primary.500",
           fontWeight: "medium",
           fontSize: "sm"
         }} >
