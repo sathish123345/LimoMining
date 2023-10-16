@@ -15,7 +15,7 @@ import PersonalSettings from '../screens/settings/PersonalSettings';
 
 
 export default function App({navigation}:any) {
-  const [currentTab, setCurrentTab] = useState("PERSONAL SETTINGS");
+  const [currentTab, setCurrentTab] = useState("MY ACCOUNT");
   // To get the curretn Status of menu ...
   const [showMenu, setShowMenu] = useState(false);
 
